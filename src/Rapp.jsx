@@ -24,10 +24,19 @@ export default function Rapp() {
     axios
       .post(`${API_BASE}/api/v1/calculs/${mode}`, { n1, n2 })
       .then((res) => {
-        setResult(res.data.result);
+        if (res.data.status === "success") {
+          setResult(res.data.result);
+        } else {
+          setError(res.data.message || "Erreur inconnue");
+        }
       })
       .catch((err) => {
-        setError("Erreur lors du calcul");
+        console.error("API Error:", err);
+        setError(
+          err.response?.data?.message ||
+          err.message ||
+          "Erreur lors du calcul"
+        );
       })
       .finally(() => {
         setLoading(false);
