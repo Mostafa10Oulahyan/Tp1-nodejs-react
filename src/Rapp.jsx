@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
 
-const API_BASE = "https://tp1-nodejs-rest-api.vercel.app/"; // <-- remplace
+const API_BASE = "https://tp1-nodejs-rest-api.vercel.app"; // No trailing slash
 
 export default function Rapp() {
   const [n1, setN1] = useState("");
